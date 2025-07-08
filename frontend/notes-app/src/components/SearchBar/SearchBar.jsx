@@ -1,6 +1,6 @@
 import React from 'react'
-import { FaMagnigyingGlass} from "react-icons/fa6"
-import { IoMdClose} from "react-icons/io"
+import { FaMagnigyingGlass } from "react-icons/fa6"
+import { IoMdClose } from "react-icons/io"
 
 
 const SearchBar = ({value, onChange, handleSearch, onClearSearch}) => {

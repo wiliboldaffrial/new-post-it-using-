@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileInfo from '../Cards/ProfileInfo';
 import { userNavigate } from "react-router-dom";
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 
 const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState("");
