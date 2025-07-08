@@ -110,7 +110,7 @@ app.post("/login", async (req, res) => {
 });
 
 //Get User
-app.get("/get-user", async (req, res) => {
+app.get("/get-user", authenticateToken, async (req, res) => {
     const { user } = req. user;
 
     const isUser = await User.findOne({ _id: user._id });
@@ -120,7 +120,12 @@ app.get("/get-user", async (req, res) => {
     }
 
     return res.json({
-        user: isUser,
+        user: {
+            fullName: isUser.fullName,
+            email: isUser.email,
+            "_id": isUser._id,
+            createdOn: isUser.createdOn            
+        },
         message: "",
     });
 })
@@ -204,7 +209,7 @@ app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
 })
 
 
-//GGet All Notes
+//Get All Notes
 app.get("/get-all-notes", authenticateToken, async (req, res) => {
     const { user } = req.user;
 
