@@ -109,6 +109,22 @@ app.post("/login", async (req, res) => {
     }
 });
 
+//Get User
+app.get("/get-user", async (req, res) => {
+    const { user } = req. user;
+
+    const isUser = await User.findOne({ _id: user._id });
+
+    if (!isUser){
+        return res.sendStatus(401);
+    }
+
+    return res.json({
+        user: isUser,
+        message: "",
+    });
+})
+
 // Add Note
 app.post("/add-note", authenticateToken, async (req, res) => {
     const{title, content, tags} = req.body;
@@ -147,6 +163,8 @@ app.post("/add-note", authenticateToken, async (req, res) => {
     }
 });
 
+
+//Edit Note
 app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
     const noteId = req.params.noteId;
     const { title, content, tags, isPinned } = req.body;
@@ -185,7 +203,9 @@ app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
     }
 })
 
-app.post("/get-all-notes", authenticateToken, async (req, res) => {
+
+//GGet All Notes
+app.get("/get-all-notes", authenticateToken, async (req, res) => {
     const { user } = req.user;
 
     try{
