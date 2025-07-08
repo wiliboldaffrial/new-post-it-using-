@@ -247,7 +247,7 @@ app.put("/update-note-pinned/:noteId", authenticateToken, async (res, req) => {
   } catch (error) {
       return res.status(500).json({
           error: true,
-          message: "interlnal Server Error",
+          message: "internal Server Error",
       });
   }
 });
